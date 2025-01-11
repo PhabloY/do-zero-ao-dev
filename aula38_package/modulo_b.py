@@ -1,2 +1,2 @@
-def fala_oi():
+def qualquer_coisa():
     print('Oi')
