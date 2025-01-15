@@ -60,4 +60,4 @@ with open(caminho_arquivo, 'w', encoding='utf-8') as arquivo:
     )
 
 # os.unlink(caminho_arquivo)/remove faz a mesma coisa
-os.rename(caminho_arquivo, 'aula54_2.txt')
+# os.rename(caminho_arquivo, 'aula54_2.txt')
