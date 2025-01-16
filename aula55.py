@@ -1,8 +1,8 @@
 import json
 
 pessoa = {
-    'nome': 'Luiz Otávio 2',
-    'sobrenome': 'Miranda',
+    'nome': 'Phablo',
+    'sobrenome': 'Yuri',
     'enderecos': [
         {'rua': 'R1', 'numero': 32},
         {'rua': 'R2', 'numero': 55},
