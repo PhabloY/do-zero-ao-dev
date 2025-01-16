@@ -48,6 +48,7 @@ def listar(tarefas):
     for tarefa in tarefas:
         print(f'\t{tarefa}')
     print()
+    
 
 def desfazer(tarefas, tarefas_refazer):
     print()
@@ -59,6 +60,7 @@ def desfazer(tarefas, tarefas_refazer):
     print(f'{tarefa=} removida da lista.')
     tarefas_refazer.append(tarefa)
     print()
+    listar(tarefas)
 
 def refazer(tarefas, tarefas_refazer):
     print()
@@ -70,6 +72,7 @@ def refazer(tarefas, tarefas_refazer):
     print(f'{tarefa=} adicionada na lista.')
     tarefas.append(tarefa)
     print()
+    listar(tarefas)
 
 def adicionar(tarefa, tarefas):
     print()
@@ -80,6 +83,7 @@ def adicionar(tarefa, tarefas):
     print(f'{tarefa=} adicionada na lista.')
     tarefas.append(tarefa)
     print()
+    listar(tarefas)
 
 tarefas = []
 tarefas_refazer = []
@@ -88,29 +92,40 @@ while True:
     print('Comandos: listar, desfazer, refazer')
     tarefa = input('Digite uma tarefa ou comando: ')
 
-    if tarefa == 'listar':
-        listar(tarefas)
-        continue
+    comandos = {
+        'listar': lambda: listar(tarefas),
+        'desfazer': lambda: desfazer(tarefas, tarefas_refazer),
+        'refazer': lambda: refazer(tarefas, tarefas_refazer),
+        'clear': lambda: os.system('cls'),
+        'adicionar': lambda: adicionar(tarefa, tarefas),
+    }
+    comando = comandos.get(tarefa) if comandos.get(tarefa) is not None else \
+        comandos['adicionar']
+    comando()
 
-    elif tarefa == 'desfazer':
-        desfazer(tarefas, tarefas_refazer)
-        listar(tarefas)
-        continue
+    # if tarefa == 'listar':
+    #     listar(tarefas)
+    #     continue
 
-    elif tarefa == 'refazer':
-        refazer(tarefas, tarefas_refazer)
-        listar(tarefas)
-        continue
+    # elif tarefa == 'desfazer':
+    #     desfazer(tarefas, tarefas_refazer)
+    #     listar(tarefas)
+    #     continue
 
-    elif tarefa == 'q':
-        break
+    # elif tarefa == 'refazer':
+    #     refazer(tarefas, tarefas_refazer)
+    #     listar(tarefas)
+    #     continue
 
-    elif tarefa == 'clear':
-        os.system('cls')
-        continue
+    # elif tarefa == 'q':
+    #     break
 
-    else:
-        adicionar(tarefa, tarefas)
-        listar(tarefas)
+    # elif tarefa == 'clear':
+    #     os.system('cls')
+    #     continue
+
+    # else:
+    #     adicionar(tarefa, tarefas)
+    #     listar(tarefas)
 
     
