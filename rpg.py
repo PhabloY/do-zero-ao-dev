@@ -33,8 +33,16 @@ def gerar_npcs(n_npcs):
 
 def exibir_npcs():
     for npc in lista_npcs:
-        print(
+        exibir_npc(npc)
+
+def exibir_npc(npc):
+    print(
             f'nome: {npc['nome']} // level: {npc['level']} // dano: {npc['dano']} // HP: {npc['hp']} // EXP: {npc['exp']}'
+            )
+
+def exibir_player():
+    print(
+            f'nome: {player['nome']} // level: {player['level']} // dano: {player['dano']} // HP: {player['hp']}/{player['hp_max']} // EXP: {player['exp']}/{player['exp_max']}'
             )
 
 
@@ -44,6 +52,13 @@ def iniciar_batalha(npc):
         atacar_player(npc)
         exibir_info_batalha(npc)
 
+    if player['hp'] > 0:
+        print(f'O {player["nome"]} venceu e ganhou {npc['exp']} de EXP!')
+        player['exp'] += npc['exp']
+        exibir_player()
+    else:
+        print(f'O {npc['nome']} venceu')
+        exibir_npc(npc)
 
 def atacar_npc(npc):
     npc['hp'] -= player['dano']
@@ -56,6 +71,7 @@ def atacar_player(npc):
 def exibir_info_batalha(npc):
     print(f'player HP: {player['hp']}/{player["hp_max"]}')
     print(f'NPC: {npc['nome']}: {npc["hp"]}/{npc['hp_max']}')
+    print('------------------\n')
 
 
 # atacar_npc(npc) - npc:hp - player:dano
