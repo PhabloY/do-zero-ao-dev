@@ -45,6 +45,12 @@ def exibir_player():
             f'nome: {player['nome']} // level: {player['level']} // dano: {player['dano']} // HP: {player['hp']}/{player['hp_max']} // EXP: {player['exp']}/{player['exp_max']}'
             )
 
+def reset_player():
+    player['hp'] = player['hp_max']
+
+def reset_npc(npc):
+    npc['hp'] = npc['hp_max']
+    
 
 def iniciar_batalha(npc):
     while player['hp'] > 0 and npc['hp'] > 0:
@@ -59,6 +65,7 @@ def iniciar_batalha(npc):
     else:
         print(f'O {npc['nome']} venceu')
         exibir_npc(npc)
+    reset_player()    
 
 def atacar_npc(npc):
     npc['hp'] -= player['dano']
