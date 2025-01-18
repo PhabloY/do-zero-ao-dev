@@ -39,9 +39,10 @@ def exibir_npcs():
 
 
 def iniciar_batalha(npc):
-    atacar_npc(npc)    
-    atacar_player(npc)
-    exibir_info_batalha(npc)
+    while player['hp'] > 0 and npc['hp'] > 0:
+        atacar_npc(npc)    
+        atacar_player(npc)
+        exibir_info_batalha(npc)
 
 
 def atacar_npc(npc):
