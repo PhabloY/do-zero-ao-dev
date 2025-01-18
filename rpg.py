@@ -20,6 +20,7 @@ def criar_npc(level):
         'level': level,
         'dano': 5 * level,
         'hp': 100 * level,
+        'hp_max': 100 * level,
         'exp': 7 * level,
     }
     return novo_npc
@@ -37,8 +38,24 @@ def exibir_npcs():
             )
 
 
+def iniciar_batalha(npc):
+    atacar_npc(npc)    
+    atacar_player(npc)
+    exibir_info_batalha(npc)
+
+
 def atacar_npc(npc):
     npc['hp'] -= player['dano']
+
+
+def atacar_player(npc):
+    player['hp'] -= npc['dano']
+
+
+def exibir_info_batalha(npc):
+    print(f'player HP: {player['hp']}/{player["hp_max"]}')
+    print(f'NPC: {npc['nome']}: {npc["hp"]}/{npc['hp_max']}')
+
 
 # atacar_npc(npc) - npc:hp - player:dano
 # atacar_player() - player:hp - npc:dano
@@ -47,6 +64,4 @@ gerar_npcs(5)
 exibir_npcs()
 
 npc_selecionado = lista_npcs[0]
-print('NPC selecionado', npc_selecionado)
-atacar_npc(npc_selecionado)
-print('npc atacado', npc_selecionado)
+iniciar_batalha(npc_selecionado)
