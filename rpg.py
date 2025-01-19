@@ -104,7 +104,7 @@ def exibir_info_batalha(npc):
 gerar_npcs(5)
 exibir_npcs()
 
-npc_selecionado = lista_npcs[0]
+npc_selecionado = lista_npcs[1]
 iniciar_batalha(npc_selecionado)
 iniciar_batalha(npc_selecionado)
 iniciar_batalha(npc_selecionado)
