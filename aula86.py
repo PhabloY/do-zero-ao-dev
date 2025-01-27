@@ -1,18 +1,23 @@
+
+def meu_repr(self):
+    class_name = self.__class__.__name__
+    class_dict = self.__dict__
+    class_repr = f'{class_name},({class_dict})'
+    return class_repr   
+
 def adiciona_repr(cls):
-    def meu_repr(self):
-        class_name = self.__class__.__name__
-        class_dict = self.__dict__
-        class_repr = f'{class_name},({class_dict})'
-        return class_repr
     cls.__repr__ = meu_repr
     return cls
 
-class MyReprMixin:
-    def __repr__(self):
-        class_name = self.__class__.__name__
-        class_dict = self.__dict__
-        class_repr = f'{class_name},({class_dict})'
-        return class_repr
+def meu_planeta(metodo):
+    def interno(self, *args, **kwargs):
+        resultado = metodo(self, *args, **kwargs)
+
+        if 'Terra' in resultado:
+            return 'Você está em casa'
+
+        return resultado
+    return interno
 
 @adiciona_repr
 class Time:
@@ -23,6 +28,11 @@ class Time:
 class Planeta:
     def __init__(self, nome):
         self.nome = nome
+
+    @meu_planeta
+    def falar_nome(self):
+        return f'Planeta é {self.nome}'
+
 
 
 
@@ -35,4 +45,5 @@ print(brasil)
 print(vasco)
 print(terra)
 print(marte)
-        
+print(terra.falar_nome())
+print(marte.falar_nome())
