@@ -1,5 +1,6 @@
 import abc
 
+
 class Contas(abc.ABC):
     def __init__(self, agencia: int, conta: int, saldo: float = 0) -> None:
         self.agencia = agencia
@@ -19,6 +20,12 @@ class Contas(abc.ABC):
         print(f'O seu saldo é {self.saldo:.2f} {msg}')
         print('--')
 
+    def __repr__(self):
+        class_name = type(self).__name__
+        attrs = f'({self.agencia!r}, {self.conta!r}, {self.saldo!r})'
+        return f'{class_name}{attrs}'
+
+
 class ContaPoupanca(Contas):
     def sacar(self, valor):
         valor_pos_saque = self.saldo - valor
@@ -32,9 +39,11 @@ class ContaPoupanca(Contas):
         self.detalhes(f'SAQUE NEGADO {valor}')
         return self.saldo
 
-    
+
 class ContaCorrente(Contas):
-    def __init__(self, agencia: int, conta: int, saldo: float = 0, limite: float = 0):
+    def __init__(self, agencia: int, conta: int, saldo: float = 0,
+                 limite: float = 0
+                 ):
         super().__init__(agencia, conta, saldo)
         self.limite = limite
 
@@ -52,6 +61,13 @@ class ContaCorrente(Contas):
         self.detalhes(f'SAQUE NEGADO {valor}')
         return self.saldo
 
+    def __repr__(self):
+        class_name = type(self).__name__
+        attrs = f'({self.agencia!r}, {self.conta!r}, {self.saldo!r}, '\
+            f'{self.limite!r})'
+        return f'{class_name}{attrs}'
+
+
 if __name__ == '__main__':
     cp1 = ContaPoupanca(111, 222)
     cp1.deposito(1)
@@ -62,4 +78,3 @@ if __name__ == '__main__':
     cc1.sacar(50)
     cc1.deposito(1)
     cc1.sacar(2)
-    
