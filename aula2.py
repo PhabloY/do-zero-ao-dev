@@ -5,8 +5,6 @@ ano_nascimento = 2024 - idade
 maior_de_idade = idade >= 18
 altura_metros = 1.80
 
-
-
 print('Nome', nome)
 print('Sobrenome', sobrenome)
 print('Idade', idade)
