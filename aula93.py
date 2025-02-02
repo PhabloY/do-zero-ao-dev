@@ -9,13 +9,32 @@
 from dataclasses import dataclass
 
 
-@dataclass
+@dataclass(init=False)
 class Pessoa:
     nome: str
-    idade: int
+    sobrenome: str
+
+    def __init__(self, nome, sobrenome):
+        self.nome = nome
+        self.sobrenome = sobrenome
+        self.nome_completo = f'{self.nome} {self.sobrenome}'
+
+    def __post_init__(self):
+        print('post init')
+
+    # @property
+    # def nome_completo(self):
+    #     return f'{self.nome} {self.sobrenome}'
+
+    # @nome_completo.setter
+    # def nome_completo(self, valor):
+    #     nome, *sobrenome = valor.split()
+    #     self.nome = nome
+    #     self.sobrenome = ''.join(sobrenome)
 
 
 if __name__ == '__main__':
-    p1 = Pessoa('Phablo', 24)
-    p2 = Pessoa('Phablo', 24)
-    print(p1 == p2)
+    p1 = Pessoa('Phablo', 'Yuri')
+    p1.nome_completo = 'Phablo Yuri'
+    # p2 = Pessoa('Phablo', 24)
+    print(p1.nome_completo)
