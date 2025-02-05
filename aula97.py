@@ -2,7 +2,7 @@
 # Docs:
 # https://dateutil.readthedocs.io/en/stable/relativedelta.html
 # https://docs.python.org/3/library/datetime.html#timedelta-objects
-from datetime import datetime, timedelta
+from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 fmt = '%d/%m/%Y %H:%M:%S'
