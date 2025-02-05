@@ -13,13 +13,13 @@ from dateutil.relativedelta import relativedelta
 data_inicio = datetime.strptime('20/12/2020', '%d/%m/%Y')
 data_final = data_inicio + relativedelta(years=5)
 valor_emprestimo = 1000000
-meses = 61
+meses = 60
 valor_parcela = valor_emprestimo / meses
 print(meses)
 data_atual = data_inicio
 
-while data_atual <= data_final:
-    print(f'{data_atual.strftime('%d/%m/%Y')} {valor_parcela:.2f}')
+while data_atual < data_final:
+    print(f'{data_atual.strftime('%d/%m/%Y')} R$ {valor_parcela:,.2f}')
     data_atual += relativedelta(months=1)
 
 print('Você quitou a divida')
