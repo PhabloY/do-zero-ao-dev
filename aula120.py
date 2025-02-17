@@ -4,3 +4,6 @@ a = 2
 b = a * 2  # 4
 # Essa linha mostra o valor de `a` + `b`
 print(a + b)  # 6
+
+
+print(a)
