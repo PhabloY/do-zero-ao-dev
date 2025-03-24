@@ -10,13 +10,15 @@ connection = sqlite3.connect(DB_FILE)
 cursor = connection.cursor()
 
 # CUIDADO: fazendo delete sem where
-cursor.execute(
-    f'DELETE FROM {TABLE_NAME}'
-)
-cursor.execute(
-    f'DELETE FROM sqlite_sequence WHERE name="{TABLE_NAME}"'
-)
+# cursor.execute(
+#     f'DELETE FROM {TABLE_NAME}'
+# )
+# cursor.execute(
+#     f'DELETE FROM sqlite_sequence WHERE name="{TABLE_NAME}"'
+# )
 connection.commit()
+
+cursor.execute(f'DROP TABLE IF EXISTS {TABLE_NAME}')
 
 # Cria a tabela
 cursor.execute(
