@@ -37,10 +37,11 @@ sql = (
     f'INSERT INTO {TABLE_NAME} '
     '(id, name, weight) '
     'VALUES '
-    '("Helena", 4), ("Eduardo", 10)'
+    '(?, ?)'
 )
 
-cursor.execute(sql, ['Phablo', 5])
+cursor.executemany(sql, [['Phablo', 5], ['carol', 5]])
+# cursor.execute(sql, ['Phablo', 5])
 connection.commit()
 
 cursor.close()
