@@ -10,15 +10,13 @@ connection = sqlite3.connect(DB_FILE)
 cursor = connection.cursor()
 
 # CUIDADO: fazendo delete sem where
-# cursor.execute(
-#     f'DELETE FROM {TABLE_NAME}'
-# )
-# cursor.execute(
-#     f'DELETE FROM sqlite_sequence WHERE name="{TABLE_NAME}"'
-# )
+cursor.execute(
+    f'DELETE FROM {TABLE_NAME}'
+)
+cursor.execute(
+    f'DELETE FROM sqlite_sequence WHERE name="{TABLE_NAME}"'
+)
 connection.commit()
-
-cursor.execute(f'DROP TABLE IF EXISTS {TABLE_NAME}')
 
 # Cria a tabela
 cursor.execute(
@@ -32,17 +30,27 @@ cursor.execute(
 connection.commit()
 
 # Registrar valores nas colunas da tabela
-# CUIDADO: sql injection
 sql = (
     f'INSERT INTO {TABLE_NAME} '
-    '(id, name, weight) '
+    '(name, weight) '
     'VALUES '
-    '(?, ?)'
+    '(:nome, :peso)'
 )
-
-cursor.executemany(sql, [['Phablo', 5], ['carol', 5]])
-# cursor.execute(sql, ['Phablo', 5])
+# cursor.execute(sql, ['Joana', 4])
+# cursor.executemany(
+#     sql,
+#     (
+#         ('Joana', 4), ('Luiz', 5)
+#     )
+# )
+cursor.execute(sql, {'nome': 'Sem nome', 'peso': 3})
+cursor.executemany(sql, (
+    {'nome': 'Joãozinho', 'peso': 3},
+    {'nome': 'Maria', 'peso': 2},
+    {'nome': 'Helena', 'peso': 4},
+    {'nome': 'Joana', 'peso': 5},
+))
 connection.commit()
+print(sql)
 
 cursor.close()
-connection.close()
