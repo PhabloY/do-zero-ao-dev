@@ -14,9 +14,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from blog import views as blog_views
 from django.contrib import admin
 from django.urls import path
 from django.http import HttpResponse
+from home import views as home_views
 
 
 def home(request):
@@ -24,13 +26,13 @@ def home(request):
     return HttpResponse('home')
 
 
-def my_view(requests):
-    print('Posso fazer outras coisas')
-    return HttpResponse('my_view')
+def blog(requests):
+    print('blog')
+    return HttpResponse('blog')
 
 
 urlpatterns = [
-    path('', home),
-    path('admin/', admin.site.urls),
-    path('blog/', my_view),
+    path('', home_views.home),
+    path('admin/', blog_views.blog),
+    path('blog/', admin.site.urls),
 ]
