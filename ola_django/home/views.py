@@ -5,5 +5,5 @@ def home(requests):
     print('home')
     return render(
         requests,
-        'home.html'
+        'home/index.html'
     )
