@@ -25,6 +25,6 @@ def exemplo(request):
 
     return render(
         request,
-        'blog/exemplo.html',
+        'home/index.html',
         context
     )
